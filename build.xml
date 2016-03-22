@@ -1,0 +1,288 @@
+<project name="javadjvu" default="dist">
+	<description>
+		JavaDjVu Applications Build
+	</description>
+        
+        <property file="build.properties" />
+        
+	<target name="init">
+		<!-- Create time stamp -->
+		<tstamp/>
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${dist.dir}" />
+		<mkdir dir="${release.classes.dir}" />
+		<mkdir dir="${debug.classes.dir}" />
+		<mkdir dir="doc" />
+	</target>
+	<target name="release.compile" description="compile base the source" depends="init">
+		<javac srcdir="src" destdir="${release.classes.dir}" optimize="${javac.optimize}" debug="off" target="${javac.target}" source="${javac.source}">
+			<or>
+				<filename name="${package.djvu.dir}/*.java" />
+				<filename name="${package.djvubean.dir}/*.java" />
+				<filename name="${package.djview.dir}/*.java" />
+				<filename name="${package.djview.frame.dir}/*.java" />
+				<selector if="addon.applet">
+					<filename name="${addon.applet}" />
+				</selector>
+				<selector if="addon.text">
+					<filename name="${addon.text}" />
+				</selector>
+				<selector if="addon.anno">
+					<filename name="${addon.anno}" />
+				</selector>
+				<selector if="addon.outline">
+					<filename name="${addon.outline}" />
+				</selector>
+				<selector if="addon.toolbar">
+					<filename name="${addon.toolbar}" />
+				</selector>
+				<selector if="addon.menu">
+					<filename name="${addon.menu}" />
+				</selector>
+				<selector if="addon.keys">
+					<filename name="${addon.keys}" />
+				</selector>
+			</or>
+		</javac>
+                <copy todir="${release.classes.dir}" >  
+ 		        <fileset dir="src">
+				<selector if="addon.toolbar">
+                                         <filename name="com/lizardtech/djvubean/toolbar/*.djvu" />
+				</selector>
+                        </fileset>
+                </copy>              
+                <copy todir="${build.dir}" >  
+ 		        <fileset dir="${release.classes.dir}">
+                                <filename name="*.class" />
+                        </fileset>
+                </copy>              
+	</target>
+	<target name="debug.compile" description="compile base the source" depends="init">
+		<javac srcdir="src" destdir="${debug.classes.dir}" optimize="off" debug="on" target="${javac.target}" source="${javac.source}">
+			<or>
+				<filename name="${package.djvu.dir}/*.java" />
+				<filename name="${package.djvubean.dir}/*.java" />
+				<filename name="${package.djview.dir}/*.java" />
+				<filename name="${package.djview.frame.dir}/*.java" />
+				<selector if="addon.applet">
+					<filename name="${addon.applet}" />
+				</selector>
+				<selector if="addon.text">
+					<filename name="${addon.text}" />
+				</selector>
+				<selector if="addon.anno">
+					<filename name="${addon.anno}" />
+				</selector>
+				<selector if="addon.outline">
+					<filename name="${addon.outline}" />
+				</selector>
+				<selector if="addon.toolbar">
+					<filename name="${addon.toolbar}" />
+				</selector>
+				<selector if="addon.menu">
+					<filename name="${addon.menu}" />
+				</selector>
+				<selector if="addon.keys">
+					<filename name="${addon.keys}" />
+				</selector>
+			</or>
+		</javac>
+                <copy todir="${debug.classes.dir}" >  
+ 		        <fileset dir="src">
+				<selector if="addon.toolbar">
+                                         <filename name="com/lizardtech/djvubean/toolbar/*.djvu" />
+				</selector>
+                        </fileset>
+                </copy>              
+                <copy todir="${debug.dir}" >  
+ 		        <fileset dir="${debug.classes.dir}">
+                                <filename name="*.class" />
+                        </fileset>
+                </copy>              
+	</target>
+	<target name="doc" description="compile the source documentation" depends="init">
+		<javadoc destdir="doc">
+			<fileset dir="src">
+				<include name="**/*.java" />
+			</fileset>
+		</javadoc>
+	</target>
+	<target name="release.jarfile" description="jar file package the compiled applet" depends="release.compile">
+		<jar destfile="${release.dir}/${jarfile.name}">
+			<fileset dir="${release.classes.dir}">
+			         <include name="${package.djvu.dir}/**" />
+			         <include name="${package.djvubean.dir}/**" />
+			         <include name="${package.djview.dir}/**" />
+			         <exclude name="${package.djview.frame.dir}/**" />
+			</fileset>
+			<manifest>
+				<attribute name="Main-Class" value="${package.djview.main}" />
+				<section name="${package.djvu.dir}/">
+                                    <attribute name="Specification-Title" value="${package.djvu.title}" />
+                                    <attribute name="Specification-Version" value="${version}" />
+                                    <attribute name="Specification-Vender" value="${package.djvu.vender}" />
+                                    <attribute name="Implementation-Title" value="${package.djvu.dot}" />
+                                    <attribute name="Implementation-Version" value="${build}" />
+                                    <attribute name="Implementation-Vender" value="${package.djvu.author}" />
+                                </section>
+				<section name="${package.djvubean.dir}/">
+                                    <attribute name="Specification-Title" value="${package.djvubean.title}" />
+                                    <attribute name="Specification-Version" value="${version}" />
+                                    <attribute name="Specification-Vender" value="${package.djvubean.vender}" />
+                                    <attribute name="Implementation-Title" value="${package.djvubean.dot}" />
+                                    <attribute name="Implementation-Version" value="${build}" />
+                                    <attribute name="Implementation-Vender" value="${package.djvubean.author}" />
+                                </section>
+				<section name="${package.djview.dir}/">
+                                    <attribute name="Specification-Title" value="${package.djview.title}" />
+                                    <attribute name="Specification-Version" value="${version}" />
+                                    <attribute name="Specification-Vender" value="${package.djview.vender}" />
+                                    <attribute name="Implementation-Title" value="${package.djview.dot}" />
+                                    <attribute name="Implementation-Version" value="${build}" />
+                                    <attribute name="Implementation-Vender" value="${package.djview.author}" />
+                                </section>
+				<section name="com.lizardtech.djvubean.DjVuBean.class">
+					<attribute name="JavaBean" value="True" />
+				</section>
+			</manifest>
+		</jar>
+	</target>
+	<target name="release.jarframe" description="jar file package the compiled applet" depends="release.jarfile">
+		<jar destfile="${release.dir}/${jarframe.name}">
+			<fileset dir="${release.classes.dir}">
+			         <include name="${package.djview.frame.dir}/**" />
+			</fileset>
+			<manifest>
+				<attribute name="Main-Class" value="${package.djview.frame.main}" />
+				<attribute name="Class-Path" value="${jarfile.name}" />
+				<section name="${package.djview.frame.dir}/">
+                                    <attribute name="Specification-Title" value="${package.djview.frame.title}" />
+                                    <attribute name="Specification-Version" value="${version}" />
+                                    <attribute name="Specification-Vender" value="${package.djview.frame.vender}" />
+                                    <attribute name="Implementation-Title" value="${package.djview.frame.name}" />
+                                    <attribute name="Implementation-Version" value="${build}" />
+                                    <attribute name="Implementation-Vender" value="${package.djview.frame.author}" />
+                                </section>
+			</manifest>
+		</jar>
+	</target>
+	<target name="debug.jarfile" description="jar file package the compiled applet" depends="debug.compile">
+		<jar destfile="${debug.dir}/${jarfile.name}">
+			<fileset dir="${debug.classes.dir}">
+			         <include name="${package.djvu.dir}/**" />
+			         <include name="${package.djvubean.dir}/**" />
+			         <include name="${package.djview.dir}/**" />
+			         <exclude name="${package.djview.frame.dir}/**" />
+			</fileset>
+			<manifest>
+				<attribute name="Main-Class" value="${package.djview.main}" />
+				<section name="${package.djvu.dir}/">
+                                    <attribute name="Specification-Title" value="${package.djvu.title}" />
+                                    <attribute name="Specification-Version" value="${version}" />
+                                    <attribute name="Specification-Vender" value="${package.djvu.vender}" />
+                                    <attribute name="Implementation-Title" value="${package.djvu.dot}" />
+                                    <attribute name="Implementation-Version" value="${build}" />
+                                    <attribute name="Implementation-Vender" value="${package.djvu.author}" />
+                                </section>
+				<section name="${package.djvubean.dir}/">
+                                    <attribute name="Specification-Title" value="${package.djvubean.title}" />
+                                    <attribute name="Specification-Version" value="${version}" />
+                                    <attribute name="Specification-Vender" value="${package.djvubean.vender}" />
+                                    <attribute name="Implementation-Title" value="${package.djvubean.dot}" />
+                                    <attribute name="Implementation-Version" value="${build}" />
+                                    <attribute name="Implementation-Vender" value="${package.djvubean.author}" />
+                                </section>
+				<section name="${package.djview.dir}/">
+                                    <attribute name="Specification-Title" value="${package.djview.title}" />
+                                    <attribute name="Specification-Version" value="${version}" />
+                                    <attribute name="Specification-Vender" value="${package.djview.vender}" />
+                                    <attribute name="Implementation-Title" value="${package.djview.dot}" />
+                                    <attribute name="Implementation-Version" value="${build}" />
+                                    <attribute name="Implementation-Vender" value="${package.djview.author}" />
+                                </section>
+				<section name="com.lizardtech.djvubean.DjVuBean.class">
+					<attribute name="JavaBean" value="True" />
+				</section>
+			</manifest>
+		</jar>
+	</target>
+	<target name="debug.jarframe" description="jar file package the compiled applet" depends="debug.jarfile">
+		<jar destfile="${debug.dir}/${jarframe.name}">
+			<fileset dir="${debug.classes.dir}">
+			     <include name="${package.djview.frame.dir}/**" />
+			</fileset>
+			<manifest>
+				<attribute name="Main-Class" value="${package.djview.frame.main}" />
+				<attribute name="Class-Path" value="${jarfile.name}" />
+				<section name="${package.djview.frame.dir}/">
+                                    <attribute name="Specification-Title" value="${package.djview.frame.title}" />
+                                    <attribute name="Specification-Version" value="${version}" />
+                                    <attribute name="Specification-Vender" value="${package.djview.frame.vender}" />
+                                    <attribute name="Implementation-Title" value="${package.djview.frame.name}" />
+                                    <attribute name="Implementation-Version" value="${build}" />
+                                    <attribute name="Implementation-Vender" value="${package.djview.frame.author}" />
+                                </section>
+			</manifest>
+		</jar>
+	</target>
+	<target name="package" description="package the compiled source" depends="release.jarframe,doc" >
+          <zip destfile="${dist.dir}/${project}${version}.zip">
+  	    <zipfileset dir="." prefix="${project}${build}" includes="*.txt, *.html" />
+  	    <zipfileset dir="${build.dir}" prefix="${project}${build}/build" includes="*.jar" />
+            <zipfileset dir="${release.classes.dir}" prefix="${project}${build}/build" includes="DjVu*.class" />
+          </zip>
+          <tar destfile="${dist.dir}/${project}${version}.tar.gz" compression="gzip">
+  	    <tarfileset dir="." prefix="${project}${build}" includes="*.txt, *.html" />
+  	    <tarfileset dir="${build.dir}" prefix="${project}${build}/build" includes="*.jar" />
+  	    <tarfileset dir="${release.classes.dir}" prefix="${project}${build}/build" includes="DjVu*.class" />
+          </tar>
+          <zip destfile="${dist.dir}/${project}${version}-doc.zip">
+  	    <zipfileset dir="." prefix="${project}${build}" includes="*.txt, *.html" />
+  	    <zipfileset dir="doc" prefix="${project}${build}/doc" includes="**" />
+          </zip>
+          <tar destfile="${dist.dir}/${project}${version}-doc.tar.gz" compression="gzip">
+  	    <tarfileset dir="." prefix="${project}${build}" includes="*.txt, *.html" />
+  	    <tarfileset dir="doc" prefix="${project}${build}/doc" includes="**" />
+          </tar>
+          <zip destfile="${dist.dir}/${project}${version}-src.zip">
+  	    <zipfileset dir="." prefix="${project}${build}/" excludes="${build.dir}/**, ${dist.dir}/**, doc/**, manifest.mf" />
+          </zip>
+          <tar destfile="${dist.dir}/${project}${version}-src.tar.gz" compression="gzip">
+  	    <tarfileset dir="." prefix="${project}${build}/" excludes="${build.dir}/**, ${dist.dir}/**, doc/**, manifest.mf" />
+          </tar>
+        </target>
+
+
+	<target name="dist" description="build and package source" depends="package" />
+	<target name="clean" description="remove directories generated from source.">
+		<delete dir="${build.dir}" />
+		<delete dir="${dist.dir}" />
+		<delete dir="doc" />
+	</target>
+	<target name="test" description="Test the build" depends="release.jarframe">
+		<java jar="${release.dir}/${jarfile.name}" fork="true">
+			<arg value="${debug.document}" />
+		</java>
+	</target>
+        <target if="netbeans.home" name="debug-nb" depends="debug.jarframe" >
+          <sequential>
+            <nbjpdastart addressproperty="jpda.address" name="${project}" transport="dt_socket" >
+              <classpath path="${debug.dir}/${jarfile.name}"/>
+              <sourcepath path="src" />
+            </nbjpdastart>
+            <java classname="${package.djview.main}" classpath="${debug.classes.dir}" fork="true" >
+              <arg value="${debug.document}" />
+              <jvmarg value="-Xdebug"/>
+              <jvmarg value="-Xnoagent"/>
+              <jvmarg value="-Xbootclasspath/p"/>
+              <jvmarg value="-Djava.compiler=none"/>
+              <jvmarg value="-Xrunjdwp:transport=dt_socket,address=${jpda.address}"/>
+              <syspropertyset>
+                <propertyref prefix="run-sys-prop."/>
+                <mapper type="glob" from="run-sys-prop.*" to="*"/>
+              </syspropertyset>
+            </java>
+          </sequential>
+        </target>
+</project>
+

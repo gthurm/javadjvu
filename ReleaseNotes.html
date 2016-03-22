@@ -1,0 +1,287 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
+  <title>Release Notes for Java DjVu Viewer Applet</title>
+  <style type="text/css"> <!--
+body{color:rgb(0,0,0);background-color:white;background-image:url(/nimages/rptknot2a.gif);font-family:Arial;text-align:justify;color:navy;}
+b{color:black;}
+div{margin:0.1em 0px 0px 0.1em;padding:0px}
+div#TOP{display:block;margin-left:0px;height:73px;padding 3px 3px 3px 0px;overflow:hidden;}
+div#MAIN{display:block;clear:none;margin-left:16px;padding 3px 3px 3px 3px;}
+p{margin:0in;margin-top:12pt;margin-bottom:12pt;font-size:12pt;} 
+h1{color:black;font-size:22pt}
+h2{color:black;font-size:14pt}
+a:linked{color:blue;text-decoration:underline;text-underline:single;vertical-align:bottom;} 
+a:visited{color:purple;text-decoration:underline;text-underline:single;vertical-align:bottom;} 
+#TOP a:hover{font-weight:bold;color:black;background-color:yellow;}
+@media print,handheld {
+  div#TOP{display:none;}
+  div#MAIN{margin-left:1em;width:auto;}
+}
+@media handheld {
+  div#TOP{display:none;}
+}
+--> </style>
+</head>
+<body bgcolor="#fefefe" alink="#000099" lang="EN-US" link="blue" vlink="purple">
+<div id="TOP">
+<p><a href="http://sourceforge.net/projects/javadjvu/">Project Page</a>&nbsp;|&nbsp; 
+<a href="http://javadjvu.sourceforge.net/">Home</a>&nbsp;|&nbsp; 
+<a href="http://sourceforge.net/forum/?group_id=126194">Forums</a>&nbsp;|&nbsp; 
+<a href="http://sourceforge.net/tracker/?group_id=126194">Tracker</a>&nbsp;|&nbsp; 
+<a href="http://sourceforge.net/tracker/?group_id=126194&amp;atid=704880">Bugs</a>&nbsp;|&nbsp; 
+<a href="http://sourceforge.net/news/?group_id=126194">News</a>&nbsp;|&nbsp; 
+<a href="http://sourceforge.net/project/showfiles.php?group_id=126194">Files</a>&nbsp;|&nbsp;
+<a href="http://sourceforge.net/cvs/?group_id=126194">Cvs</a></p>
+<p><hr></p>
+</div>
+<div id="MAIN">
+<h3>JavaDjVu - Release 0.8.09</h3>
+
+<p>
+This package contains the source code and documentation for JavaDjVu.  JavaDjVu
+consists of a reference library and GUI code that may be used to view and
+navigate DjVu documents from JVM 1.1 compliant virtual machines.
+</p>
+
+<h4>BUILD REQUIREMENTS:</h4>
+<ol>
+	<li>JDK 1.5.0 or later.</li>
+	<li>GNU bash, version 2.05b or later. (for command line builds)</li>
+	<li>NetBeans 4.1 or later.  (for GUI builds)</li>
+</ol>
+<h4>RUNTIME REQUIREMENTS:</h4>
+<ol>
+	<li>One of J2SE Runtime Environment 1.1.4, J2ME 2.0, or newer releases. JIT highly recommended.</li>
+	<li>At least 64MB of memory.</li>
+	<li>A java enabled browser such as Internet Explorer,
+	   Mozilla Firefox 1.0, or Netfront 3.1.</li>
+</ol>
+
+<h4>NON-SUPPORTED RUNTIME ENVIRONMENTS:</h4>
+<div style="margin-left: 16px">
+<p>
+If you are not lucky enough to be using the Sun JVM, you can try
+a Java 1.1 compatible virtual machines.  Visit:</p>
+<ul>
+	<a href="http://www.gnu.org/software/classpath/stories.html#jvm">http://www.gnu.org/software/classpath/stories.html#jvm</a>
+</ul>
+<p>for a list of virtual machines to try.</p>
+</div>
+<h4>INVOKING THE VIEWER:</h4>
+<div style="margin-left: 16px">
+<p>Primarily, the viewer is intended to be used as an applet.  The instructions in
+<a href="Deployment.html">Deployment.html</a> will guide you deploying the applet on
+your website.  There is limited support for running the viewer as a standalone application.
+To do so, you must have Java 1.3 or later installed and in your search path.  Assuming both
+javadjvu.jar and foo.djvu are in the current directory, the following command line would 
+be used to view foo.djvu:</p>
+<ul>
+	java -jar javadjvu.jar foo.djvu
+</ul>
+<p>Actually any valid URL may be used.  For example, when debugging the following commandline
+is invoked:</p>
+<ul>
+	java -jar javadjvu.jar http://javadjvu.sourceforge.net/examples/
+</ul>
+<p>Note that the web browser built into Java does not support current standards.  Consiquently,
+few websites can actually be browsed successfully with the viewer.</p>
+</div>
+<h4>BUILD INSTRUCTIONS:</h4>
+<div style="margin-left: 16px">
+<p>
+	If you have NetBeans, you may load javadjvu as a NetBeans project
+	and build, debug, and test from there.  Otherwise you may install and configure
+	GNU bash with your JDK path and execute the following command line:
+</p>
+<ul>
+		./build.sh
+</ul>
+<p>
+	The resulting files will be populated into the build directory.  You
+	may test your build with the command:
+</p>
+<ul>
+		cd example<br>
+		java -jar ../build/javadjvu.jar
+</ul>
+<p>
+	This should open a standalone application browsing the document in the
+        examples directory.  You are now ready to copy the DjVuApplet.class
+	and javadjvu.jar file to your website.
+</p>
+</div>
+<h4>DEPLOYMENT INSTRUCTIONS:</h4>
+<div style="margin-left: 16px">
+<p>
+	Basic instructions for deploying a document are listed in the
+	Deployment.html file.
+</p>
+</div>
+<h4>ADVANCED BUILD INSTRUCTIONS:</h4>
+<div style="margin-left: 16px">
+<p>
+	JavaDjVu contains the optional components:
+</p>
+<ul>
+		applet, menu, toolbar, text, anno, outline, and frame
+</ul>
+<p>
+	Each of these components adds to the functionality of the build, at
+	the cost of a larger file size and a longer download time.
+</p>
+<p>
+	The default is to build all optional components but you may 
+	do a custom build with just the features you wish to use by
+	listing only the features you want on the build.sh command line.
+	For example, if you wanted to build an applet with only menu
+	navigation, and no support for hidden text or annotations you 
+	would use the command:
+</p>
+<ul>
+		./build.sh applet menu
+</ul>
+<p>
+	If you are using NetBeans to build the applet, then comment out
+	the properties in the build.properties file for the optional components
+	you do not want to include.  For example to disable the menu
+	option you would change the line:
+</p>
+<ul>
+        addon.menu=com/lizardtech/*/menu/*.java
+</ul>
+<p>
+	to:
+</p>
+<ul>
+        # addon.menu=com/lizardtech/*/menu/*.java
+</ul>
+<p>
+	The optional components are further described below:
+</p>
+<h5>applet: (adds approximately 137 bytes to the build)</h5>
+<ul>
+		Used to build the DjVuApplet.class.  This is required for
+		using the &lt;APPLET&gt; tag from HTML documents.
+</ul>
+<h5>menu: (adds approximately 5036 bytes to the build)</h5>
+<ul>
+		Used to add a pop-up menu to the applet.  When the user clicks
+		on the right mouse button, or any mouse button with a CTRL key
+		the pop-up menu will appear.  This will allow users to navigate
+		multi-page documents, zoom, and access the AboutURL and HelpURL.
+		This option does not work for most J2ME devices.
+</ul>
+<h5>keys: (adds approximately 1528 bytes to the build)</h5>
+<ul>
+		Used to add keyboard shortcuts to the applet.  The user will be
+                able to navigate the document using the keyboard.  This option does 
+                not work for most J2ME devices.
+</ul>
+<h5>toolbar: (adds approximately 34012 bytes to the build)</h5>
+<ul>
+		Used to enable a toolbar at the top of each page.  This toolbar
+		may be used for navigating multi-page documents, zoom, and
+		perform text search functions if "text" has also been
+		selected.
+</ul>
+<h5>text: (adds approximately 9988 bytes to the build)</h5>
+<ul>
+		Used to enable underlying support for the hidden text layer.
+		This enables decoding of TXTa and TXTz chunks in the document.
+		If combined with the toolbar option, users will be able to
+		search and view hidden text.
+</ul>
+<h5>anno: (adds approximately 23358 bytes to the build)</h5>
+<ul>
+		Used to enable hyperlink annotations.  This will enable
+		decoding of ANTa and ANTz chunks.  Users will be able to
+		click on hyperlinks and follow links inside the DjVu document.
+</ul>
+<h5>outline: (adds approximately 8709 bytes to the build)</h5>
+<ul>
+		Used to enable outline navigation.  This option enables the
+		decoding of the "NAVM" chunks, and using the ouline to 
+		navigate multi-page DjVu documents.
+</ul>
+</div>
+<h4>CHANGES:</h4>
+<h5>Version 0.8.08 to 0.8.09</h5>
+<ul>
+<li>Fixed a bug in annotation colors for text and lines</li>
+<li>Added an explicit requestFocus to the mouseListeners</li>
+</ul>
+<h5>Version 0.8.07 to 0.8.08</h5>
+<ul>
+<li>Fixed bug in 0.8.07 causing zoom=page and zoom=width to fail<li>
+<li>Corrected About dialog path.</li>
+</ul>
+<h5>Version 0.8.06 to 0.8.07 (DOA)</h5>
+<ul>
+<li>Rewrote DataPool to randomly access data, and only cache a finite amount.</li>
+<li>Rewrote DataPool.CachedInputStream to be just CachedInputStream.</li>
+<li>Modified CachedInputStream to take over the role as a data container.</li>
+<li>Changed most uses of DataPool to CachedInputStream.</li>
+<li>Fixed a problem with case insensative searches.  Lowercase search terms 
+  should now correctly cause a case insensative search.</li>
+<li>I think the firefox MacOSX freezes have been greatly reduced by updating 
+  the status line from the paint() call.</li>
+<li>Replaced IFFInputStream with IFFEnumerator.  This is a much cleaner 
+implementation and makes the code more readable.</li>
+<li>Changed log output to be to DjVuOptions.out and DjVuOptions.err, so
+an applet can redirect the output from System.out and System.err.</li>
+<li>Added DjVuConsole class to debug IE problems with.</li>
+<li>Optimized the IO routines to minimize the number of synchronization locks.</li>
+</ul>
+<h5>Version 0.8.05 to 0.8.06</h5>
+<ul>
+<li>Major changes to the djvubean package to support multipage display mode.  
+The code could be made more efficient for the case of equal DPI value
+for all visible pages.</li>
+<li>Added com.lizardtech.djvubean.keys to support keyboard shortcuts.</li>
+<li>Added param options "keys" and "pagelayout" to support the new code.</li>
+<li>Added a "searchtext" param element to set the initial search string.</li>
+<li>Modified the finder so pressing return repeats the last search function with the current text.</li>
+</ul>
+<h5>Version 0.8.04 to 0.8.05</h5>
+<ul>
+<li>Added missing repaint() calls for the TextArea</li>
+<li>Revised DjVuFilter to use double math instead of long math, as this makes the code more readable</li>
+<li>Revised DjVuFilter not to include undisplayed pixel for non-animated images.</li>
+<li>Revised ToolbarImages to use a toolbar.djvu resource instead of a byte array</li>
+<li>Revised build.xml to include some package information in the manifest</li>
+<li>Changed the main class to Applet, which will print an error if the Frame class can not be loaded.</li>
+<li>Updated the build.sh script to use the build.properties file</li>
+<li>Automatically start prefetching when searching a whole document</li>
+<li>Moved com.lizardtech.djview.frame into a separate jar file.</li>
+<li>Moved the annotation code for djvubean into its own package</li>
+<li>Use alpha channel highlighting instead of XOR highlighting on MacOSX</li>
+<li>Added support for highlight, text, and line annotations.</li>
+<li>For versions of java without a Color(int,boolean) constructor, XOR will be used instead of
+ALPHA channels.</li>
+
+</ul>
+<h5>Version 0.8.03 to 0.8.04</h5>
+<ul>
+<li>Fit Width and fit page failed when the display size was unknown.  Fixed by defering 
+  getImageWait until the first paint.  This also speeds up the initial loading of the applet.</li>
+<li>Added progressive rendering for Color JB2 to avoid an Exception.</li>
+<li>ZoomFast was missing from the Properties.html file.  Added it.</li>
+<li>Added a property for debug.document and set the default to http://javadjvu.sourceforge.net/examples/</li>
+<li>Added VERSION to DjVuOptions</li>
+<li>Changed DjVuBean.isDecoding() to return true when the image is not set.  This is neccessary for
+  the toolbar to correctly initialize which buttons should be enabled.</li>
+</ul>
+<h5>Version 0.8.02 to 0.8.03</h5>
+<ul>
+<li>Revised and refactored most of the API's to add anti-aliasing, prefetching, predecoding, and 
+  progressive decoding.</li>
+<li>Revised the Frame class to allow basic navigation.</li>
+<li>Entirely rewrote the scrolling code for faster performance and less memory usage.</li>
+<li>Fixed the problems that kept MSVM version of Java 1.14 from loading.</li>
+<li>Added the use of references to avoid exhausting memory.</li>
+<li>Fixed the handling of bundled documents not to require the full document prior to
+  navigating them.  (Note: Indirect provide a much better user experience.)</li>
+<li>Updated the NetBeans project to support interactive debugging.</li>
+</ul>
+</div></body></html>

@@ -1,0 +1,180 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
+  <title>Deploying the Java DjVu Viewer Applet</title>
+  <style type="text/css"> <!--
+body{color:rgb(0,0,0);background-color:white;background-image:url(/nimages/rptknot2a.gif);font-family:Arial;text-align:justify;color:navy;}
+b{color:black;}
+div{margin:0.1em 0px 0px 0.1em;padding:0px}
+div#TOP{display:block;margin-left:0px;height:73px;padding 3px 3px 3px 0px;overflow:hidden;}
+div#MAIN{display:block;clear:none;margin-left:16px;padding 3px 3px 3px 3px;}
+p{margin:0in;margin-top:12pt;margin-bottom:12pt;font-size:12pt;} 
+h1{color:black;font-size:22pt}
+h2{color:black;font-size:14pt}
+a:linked{color:blue;text-decoration:underline;text-underline:single;vertical-align:bottom;} 
+a:visited{color:purple;text-decoration:underline;text-underline:single;vertical-align:bottom;} 
+#TOP a:hover{font-weight:bold;color:black;background-color:yellow;}
+@media print,handheld {
+  div#TOP{display:none;}
+  div#MAIN{margin-left:1em;width:auto;}
+}
+@media handheld {
+  div#TOP{display:none;}
+}
+--> </style>
+</head>
+<body bgcolor="#fefefe" alink="#000099" lang="EN-US" link="blue" vlink="purple">
+<div id="TOP">
+<p><a href="http://sourceforge.net/projects/javadjvu/">Project Page</a>&nbsp;|&nbsp; 
+<a href="http://javadjvu.sourceforge.net/">Home</a>&nbsp;|&nbsp; 
+<a href="http://sourceforge.net/forum/?group_id=126194">Forums</a>&nbsp;|&nbsp; 
+<a href="http://sourceforge.net/tracker/?group_id=126194">Tracker</a>&nbsp;|&nbsp; 
+<a href="http://sourceforge.net/tracker/?group_id=126194&amp;atid=704880">Bugs</a>&nbsp;|&nbsp; 
+<a href="http://sourceforge.net/news/?group_id=126194">News</a>&nbsp;|&nbsp; 
+<a href="http://sourceforge.net/project/showfiles.php?group_id=126194">Files</a>&nbsp;|&nbsp;
+<a href="http://sourceforge.net/cvs/?group_id=126194">Cvs</a></p>
+<p><hr /></p>
+</div>
+<div id="MAIN">
+<h1>How to Deploy the Java DjVu Viewer Applet</h1>
+<P>The Java DjVu Applet is designed to be embedded inside larger HTML pages. It does not require the web server to support the DjVu MIME type, but only that the
+DjVu files will be served as binary files. </P>
+<h2>Basics </h2>
+<P>The standard way to include an applet inside an HTML page is to use the
+<B>&lt;applet&gt;</B> tag. </P>
+<UL><PRE>&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Example&lt;/title&gt;
+&lt;/head&gt;
+&lt;body bgcolor="#ffffff" leftMargin="0" topMargin="0"&gt;
+&lt;applet
+	codebase="/java"
+	code="DjVuApplet.class"
+	archive="javadjvu.jar"
+	width="640"
+	height="480"
+	style="border:0px none;margin:0px 0px 0px 0px;width:640;height:480"&gt;
+&lt;param name="data" value="/manuals/genfrac/GF3.0_UserGuide.djvu"&gt;
+&lt;param name="image" value="http://javadjvu.sourceforge.net"&gt;
+&lt;param name="cache_archive" value="javadjvu.jar"&gt;
+&lt;/applet&gt;
+&lt;a href="About.html"&gt;next test
+&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+</PRE></UL>
+<P>There are several &lt;applet&gt; attributes needed to deploy the applet. </P>
+<UL>
+  <LI><B>code="DjVuApplet.class" </B>- tells the java virtual machine what class
+  name to load first. If the <B>codebase </B>attribute is specified, the class
+  file will be loaded from the specified code base, otherwise it will be loaded
+  from the document base.
+  <LI><B>archive="javadjvu.jar" </B>- tells the java virtual machine whereto
+  load the rest of the Java code from. If the <B>codebase </B>attribute is
+  specified, the jar file will be loaded from the specified codebase, otherwise
+  it will be loaded from the document base.
+  <LI><B>codebase="&lt;uri&gt;" </B>- tells the java virtual machine from where
+  to load the files specified with the <B>code </B>and <B>archive </B>tags. The
+  URI specified with this tag may be either relative, or absolute pointing to
+  any website accessible by the browser.
+  <LI><B>width="&lt;number&gt;" </B>- tells the browsers how many pixels wide to
+  use for the applet display.
+  <LI><B>height="&lt;number&gt;" </B>- tells the browsers how many pixels high
+  to use for the applet display. </LI>
+  <LI><B>style="&lt;text&gt;" </B>- tells modern browsers how to display the 
+  applet. Except on MacOSX the height and width may be made relative by using 
+  a percent sign.</LI>
+  </UL>
+<P>In the above example we used a <B>codebase="/java" </B>,
+<B>code="DjVuApplet.class" </B>, and <B>archive="javadjvu.jar" </B>. This means
+the initial class will be loaded from the URI "/java/DjVuApplet.class", and the
+rest of the code will be loaded from the URI "/java/javadjvu.jar". </P>
+  <P>The appearance of the Java DjVu Applet may be further customized by specifying 
+    additional <A
+href="Properties.html">properties</a>. Refer to the <A
+href="Properties.html">Properties.html </a>file for a complete list of properties 
+    supported by the Java DjVu Applet.</P>
+<H2>Using &lt;embed&gt; and &lt;object&gt; tags. </H2>
+<P>Java applets may also be deployed using <B>&lt;embed&gt; </B>and/or
+<B>&lt;object&gt;</B> tags for browsers using J2SE Runtime Edition 1.3.1 or
+later. The primary reason why a web developer would wish to use these tags
+instead of <B>&lt;applet&gt;</B> would be to enable automatic deployment of the
+J2SE Runtime Edition. Fortunately, there is no need for web developers to deal
+with the complicated syntax of <B>&lt;object&gt;</B> and <B>&lt;embed&gt;</B>.
+Part of the J2SE development kit is a tool called "<B>HTMLConvert</B>".  This
+tool can automatically convert web pages using <B>&lt;applet&gt;</B> tags to
+<B>&lt;object&gt;</B> and <B>&lt;embed&gt;</B> tags. Web developers can write
+and test web pages using the simple <B>&lt;applet&gt;</B> tag syntax and then
+convert the pages using the <B>HTMLConvert</B> tool. </P>
+<P>There are a few enhancements of &lt;object&gt; and &lt;embed&gt; tags over
+the applet tag worth mentioning: </P>
+<OL>
+  <LI>The width and height of &lt;object&gt; and &lt;embed&gt; tags may be
+  relative rather than absolute. This means it is possible to specify a value
+  like <B>width="100%" </B>or <B>height="100%" </B>when using &lt;object&gt; or
+  &lt;embed&gt; rather than selecting a fixed size like <B>width="640" </B>and
+  <B>height="480" </B>
+  <LI>The class specified by the code base attribute may be inside the jar file.
+  This means the <B>com.lizardtech.djview.Applet.class </B>class may be loaded
+  directly from the jar file, rather than first loading <B>DjVuApplet.class</B>.
+  </LI></OL>
+<H2>Relative sizes with &lt;applet&gt; tags </H2>
+<P>Unfortunately, the <B>&lt;applet&gt;</B> tag can only be specified with fixed
+height and width attributes. The most common solution to this problem is to use a style attribute, but this still fails for Mozilla based browsers on MacOS X.  Another possible way to avoid this limitation is to use
+the <B>HTMLConvert</B> tool described above. A third alternative is to use
+JavaScript as in the following example:</P>
+<UL><PRE>      &lt;html&gt;
+      &lt;head&gt;
+      &lt;title&gt;GF 3.0 UserGuide&lt;/title&gt;
+      &lt;/head&gt;
+      &lt;body scroll="no" bgcolor="#ffffff" leftMargin="0" topMargin="0"&gt;
+      &lt;script language="JavaScript"&gt;
+      &lt;!--
+      var url="/manuals/genfrac/GF3.0_UserGuide.djvu";
+      var width=720, height=480;
+      if(window &amp;&amp; window.innerWidth)
+      {
+        width=window.innerWidth; height=window.innerHeight;
+      }
+      else if(document.body &amp;&amp; document.body.clientWidth)
+      {
+        width=document.body.clientWidth; height=document.body.clientHeight;
+      }
+      document.writeln('&lt;applet ');
+      document.write('	style="border:0px none;margin:0px 0px 0px 0px;');
+      document.writeln('width:100%;height:100%"');
+      document.writeln('	code="DjVuApplet.class"');
+      document.writeln('	codebase="/java"');
+      document.writeln('	archive="javadjvu.jar"');
+      document.writeln('	width="'+(width-8)+'"');
+      document.writeln('	height="'+(height-8)+'" &gt;');
+      document.writeln('&lt;param name="data" value="'+url+'" &gt;');
+      document.writeln('&lt;param name="image" value="http://javadjvu.sourceforge.net"&gt;');
+      document.writeln('&lt;param name="cache_archive" value="javadjvu.jar"&gt;');
+      document.writeln('A Java Enabled browser is required to view this page.');
+      document.write('&lt;/applet&gt;');
+      // --&gt;
+      &lt;/script&gt;&lt;noscript&gt;
+      &lt;applet
+	codebase="/java"
+	code="DjVuApplet.class"
+	archive="javadjvu.jar"
+	width="720"
+	height="480"
+	style="border:0px none;margin:0px 0px 0px 0px;width:100%;height:100%"&gt;
+      &lt;param name="data" value="/manuals/genfrac/GF3.0_UserGuide.djvu"&gt;
+      &lt;param name="image" value="http://javadjvu.sourceforge.net"&gt;
+      &lt;param name="cache_archive" value="javadjvu.jar"&gt;
+      &lt;/applet&gt;&lt;/noscript&gt;
+      &lt;/body&gt;
+      &lt;/html&gt;
+      </PRE></UL>
+<P>With this code we generate an <B>&lt;applet&gt;</B> tag that uses nearly 100%
+of the page. An 8 pixel border is provided to prevent the browser from adding
+scrollbars. For browsers which do not support querying the page size and style
+sheets, a default of 720 by 480 pixels will be used.</P>
+<P>&nbsp;</P></FONT>
+</div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+Version 0.8.08 to 0.8.09
+- Fixed a bug in annotation colors for text and lines
+- Added an explicit requestFocus to the mouseListeners
+
+Version 0.8.07 to 0.8.08
+- Fixed bug in 0.8.07 causing zoom=page and zoom=width to fail
+- Corrected About dialog path.
+
+Version 0.8.06 to 0.8.07 (DOA)
+- Rewrote DataPool to randomly access data, and only cache a finite amount.
+- Rewrote DataPool.CachedInputStream to be just CachedInputStream.
+- Modified CachedInputStream to take over the role as a data container.
+- Changed most uses of DataPool to CachedInputStream.
+- Fixed a problem with case insensative searches.  Lowercase search terms 
+  should now correctly cause a case insensative search.
+- I think the firefox MacOSX freezes have been greatly reduced by updating 
+  the status line from the paint() call.
+- Replaced IFFInputStream with IFFEnumerator.  This is a much cleaner 
+  implementation and makes the code more readable.
+- Changed log output to be to DjVuOptions.out and DjVuOptions.err, so
+  an applet can redirect the output from System.out and System.err.
+- Added DjVuConsole class to debug IE problems with.
+- Optimized the IO routines to minimize the number of synchronization locks.
+
+
+Version 0.8.05 to 0.8.06
+- Major changes to the djvubean package to support multipage display mode.  
+  The code could be made more efficient for the case of equal DPI value
+  for all visible pages.
+- Added com.lizardtech.djvubean.keys to support keyboard shortcuts.
+- Added param options "keys" and "pagelayout" to support the new code.
+- Added a "searchtext" param element to set the initial search string.
+- Modified the finder so pressing return repeats the last search function with the current text.
+
+Version 0.8.04 to 0.8.05
+- Added missing repaint() calls for the TextArea
+- Revised DjVuFilter to use double math instead of long math, as this makes the code more readable
+- Revised DjVuFilter not to include undisplayed pixel for non-animated images.
+- Revised ToolbarImages to use a toolbar.djvu resource instead of a byte array
+- Revised build.xml to include some package information in the manifest
+- Changed the main class to Applet, which will print an error if the Frame class can not be loaded.
+- Updated the build.sh script to use the build.properties file
+- Automatically start prefetching when searching a whole document
+- Moved com.lizardtech.djview.frame into a separate jar file.
+- Moved the annotation code for djvubean into its own package
+- Added support for highlight, text, and line annotations.
+- Use alpha channel highlighting instead of XOR highlighting on MacOSX
+- For versions of java without a Color(int,boolean) constructor, XOR will be used instead of
+  ALPHA channels.
+
+Version 0.8.03 to 0.8.04
+- Fit Width and fit page failed when the display size was unknown.  Fixed by defering 
+  getImageWait until the first paint.  This also speeds up the initial loading of the applet.
+- Added progressive rendering for Color JB2 to avoid an Exception.
+- ZoomFast was missing from the Properties.html file.  Added it.
+- Added a property for debug.document and set the default to http://javadjvu.sourceforge.net/examples/
+- Added VERSION to DjVuOptions
+- Changed DjVuBean.isDecoding() to return true when the image is not set.  This is neccessary for
+  the toolbar to correctly initialize which buttons should be enabled.
+
+Version 0.8.02 to 0.8.03
+- Revised and refactored most of the API's to add anti-aliasing, prefetching, predecoding, and 
+  progressive decoding.
+- Revised the Frame class to allow basic navigation.
+- Entirely rewrote the scrolling code for faster performance and less memory usage.
+- Fixed the problems that kept MSVM version of Java 1.14 from loading.
+- Added the use of references to avoid exhausting memory.
+- Fixed the handling of bundled documents not to require the full document prior to
+  navigating them.  (Note: Indirect provide a much better user experience.)
+- Updated the NetBeans project to support interactive debugging.
+

@@ -1,0 +1,242 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
+  <title>Properties of the Java DjVu Viewer Applet</title>
+  <style type="text/css"> <!--
+body{color:rgb(0,0,0);background-color:white;background-image:url(/nimages/rptknot2a.gif);font-family:Arial;text-align:justify;color:navy;}
+b{color:black;}
+div{margin:0.1em 0px 0px 0.1em;padding:0px}
+div#TOP{display:block;margin-left:0px;height:73px;padding 3px 3px 3px 0px;overflow:hidden;}
+div#MAIN{display:block;clear:none;margin-left:16px;padding 3px 3px 3px 3px;}
+p{margin:0in;margin-top:12pt;margin-bottom:12pt;font-size:12pt;} 
+h1{color:black;font-size:22pt}
+h2{color:black;font-size:14pt}
+a:linked{color:blue;text-decoration:underline;text-underline:single;vertical-align:bottom;} 
+a:visited{color:purple;text-decoration:underline;text-underline:single;vertical-align:bottom;} 
+#TOP a:hover{font-weight:bold;color:black;background-color:yellow;}
+@media print,handheld {
+  div#TOP{display:none;}
+  div#MAIN{margin-left:1em;width:auto;}
+}
+@media handheld {
+  div#TOP{display:none;}
+}
+--> </style>
+</head>
+<body bgcolor="#fefefe" alink="#000099" lang="EN-US" link="blue" vlink="purple">
+<div id="TOP">
+<p><a href="http://sourceforge.net/projects/javadjvu/">Project Page</a>&nbsp;|&nbsp; 
+<a href="http://javadjvu.sourceforge.net/">Home</a>&nbsp;|&nbsp; 
+<a href="http://sourceforge.net/forum/?group_id=126194">Forums</a>&nbsp;|&nbsp; 
+<a href="http://sourceforge.net/tracker/?group_id=126194">Tracker</a>&nbsp;|&nbsp; 
+<a href="http://sourceforge.net/tracker/?group_id=126194&amp;atid=704880">Bugs</a>&nbsp;|&nbsp; 
+<a href="http://sourceforge.net/news/?group_id=126194">News</a>&nbsp;|&nbsp; 
+<a href="http://sourceforge.net/project/showfiles.php?group_id=126194">Files</a>&nbsp;|&nbsp;
+<a href="http://sourceforge.net/cvs/?group_id=126194">Cvs</a></p>
+<p><hr></p>
+</div>
+<div id="MAIN">
+<h1>Properties</h1>
+<p>The Java DjVu Applet exposes the Properties listed below. These allow 
+web-page authors and developers to control the behavior of the applet.  Typically
+these values are set as parameters to &lt;APPLET&gt;, &lt;OBJECT&gt;, or 
+&lt;EMBED&gt; tags.</p>
+<p>&nbsp;</p>
+<table cellspacing=0 width=678>
+  <tbody>
+  <tr>
+    <td valign=top width=217>
+      <p style="MARGIN-LEFT: 12px; TEXT-ALIGN: center" align=center><b
+      style="font-WEIGHT: bold">Name, Values, Default</b></p></td>
+    <td valign=top width=451>
+      <p style="MARGIN-LEFT: 12px; TEXT-ALIGN: center"
+      align=center><b>Description</b></p></td></tr>
+  <tr>
+    <td valign=top>
+      <p style="MARGIN-LEFT: 12px">AboutURL, &lt;url&gt;,
+      ReleaseNotes....html</p></td>
+    <td valign=top>
+      <p style="MARGIN-LEFT: 12px">A URL that points to the About Information
+      for this Applet.</p>
+      <p style="MARGIN-LEFT: 12px">Examples:</p>
+      <ul>
+        <li>&lt;param name="abouturl" value="about.html" /&gt;</li>
+        <li>&lt;param name="abouturl" value="http://www.foo.com" /&gt;</li></ul></td></tr>
+  <tr>
+    <td valign=top>
+      <p style="MARGIN-LEFT: 12px">Cache, [yes|no], depends</p></td>
+    <td valign=top>
+      <p style="MARGIN-LEFT: 12px">Enables or disables predecoding and caching.</p>
+      <p style="MARGIN-LEFT: 12px">Examples:</p>
+      <ul>
+        <li>&lt;param name="cache" value="no" /&gt;</li>
+        <li>&lt;param name="cache" value="yes" /&gt; </li></ul></td></tr>
+  <tr>
+    <td valign=top>
+      <p style="MARGIN-LEFT: 12px">Cache_archive, &lt;url&gt;</p></td>
+    <td valign=top>
+      <p style="MARGIN-LEFT: 12px">Sun Java tag to enable caching of the jar file across sessions.</p>
+      <p style="MARGIN-LEFT: 12px">Example:</p>
+      <ul>
+        <li>&lt;param name="cache_archive" value="javadjvu.jar" /&gt;</li></ul></td></tr>
+  <tr>
+    <td valign=top>
+      <p style="MARGIN-LEFT: 12px">Data, &lt;url&gt;,
+      &lt;&lt;&lt;&lt;required&gt;&gt;&gt;&gt;</p></td>
+    <td valign=top>
+      <p style="MARGIN-LEFT: 12px">Specifies location and access method for the
+      DjVu document. &nbsp; This URL must be on the same site as the codebase. 
+      Java will not allow an unsigned applet to open documents on a separate website.</p>
+      <p style="MARGIN-LEFT: 12px">Examples:</p>
+      <ul type=disc>
+        <li>&lt;param name="data"
+        value="../sampleimages/inhocannodomini.djvu" /&gt;</li>
+        <li>&lt;param name="data"
+        value="/solutions/document/samples/brattain/directory.djvu" /&gt;
+    </li></ul></td></tr>
+  <tr>
+    <td valign=top>
+      <p style="MARGIN-LEFT: 12px">HelpURL, &lt;url&gt;,
+      http://javadjvu.sourceforge.net</p></p></td>
+    <td valign=top>
+      <p style="MARGIN-LEFT: 12px">A URL that points to the Help File.</p>
+      <p style="MARGIN-LEFT: 12px">Examples:</p>
+      <ul>
+        <li>&lt;param name="helpurl" value="help.html" /&gt;</li>
+        <li>&lt;param name="helpurl" value="http://www.foo.com" /&gt; 
+  </li></ul></td></tr>
+  <tr>
+    <td valign=top>
+      <p style="MARGIN-LEFT: 12px">Image, &lt;url&gt;</p></td>
+    <td valign=top>
+      <p style="MARGIN-LEFT: 12px">Sun Java tag pointing to the image to display while loading.</p>
+      <p style="MARGIN-LEFT: 12px">Example:</p>
+      <ul>
+        <li>&lt;param name="image" value="http://javadjvu.sourceforge.net/djvu_badge-140x49.gif" /&gt;</li></ul></td></tr>
+  <tr>
+    <td valign=top>
+      <p style="MARGIN-LEFT: 12px">Keys, [yes|no], yes</p></td>
+    <td valign=top>
+      <p style="MARGIN-LEFT: 12px">Enables or disables keyboard shortcuts.</p>
+      <p style="MARGIN-LEFT: 12px">Examples:</p>
+      <ul>
+        <li>&lt;param name="keys" value="no" /&gt;</li>
+        <li>&lt;param name="keys" value="yes" /&gt; </li></ul></td></tr>
+  <tr>
+    <td valign=top>
+      <p style="MARGIN-LEFT: 12px">LogoURL, &lt;url&gt;,
+      http://www.lizardtech.com</p></td>
+    <td valign=top>
+      <p style="MARGIN-LEFT: 12px">A URL that points to location selected by
+      clicking on the logo.</p>
+      <p style="MARGIN-LEFT: 12px">Examples:</p>
+      <ul>
+        <li>&lt;param name="logourl" value="lizardtech.html" /&gt;</li>
+        <li>&lt;param name="logourl" value="http://www.lizardtech.com" /&gt;
+      </li></ul></td></tr>
+  <tr>
+    <td valign=top>
+      <p style="MARGIN-LEFT: 12px">Menu, [yes|no], yes</p></td>
+    <td valign=top>
+      <p style="MARGIN-LEFT: 12px">Enables or disables the pop-up menu.</p>
+      <p style="MARGIN-LEFT: 12px">Examples:</p>
+      <ul>
+        <li>&lt;param name="menu" value="no" /&gt;</li>
+        <li>&lt;param name="menu" value="yes" /&gt; </li></ul></td></tr>
+  <tr>
+    <td valign=top>
+      <p style="MARGIN-LEFT: 12px">MouseMode, [pan|zoom|text], pan</p></td>
+    <td valign=top>
+      <p style="MARGIN-LEFT: 12px">Determines behavior of dragging mouse:&nbsp;
+      panning the image, select zoom or display hidden text.</p>
+      <p style="MARGIN-LEFT: 12px">Examples:</p>
+      <ul>
+        <li>&lt;param name="mousemode" value="pan" /&gt;</li>
+        <li>&lt;param name="mousemode" value="zoom" /&gt;</li>
+        <li>&lt;param name="mousemode" value="text" /&gt; </li></ul></td></tr>
+  <tr>
+    <td valign=top>
+      <p style="MARGIN-LEFT: 12px">NavPane, [outline|none], none</p></td>
+    <td valign=top>
+      <p style="MARGIN-LEFT: 12px">Enables and sets the type of the navigation
+      pane.</p>
+      <p style="MARGIN-LEFT: 12px">Examples:</p>
+      <ul>
+        <li>&lt;param name="navpane" value="outline" /&gt;</li>
+        <li>&lt;param name="navpane" value="none" /&gt; </li></ul></td></tr>
+  <tr>
+    <td valign=top>
+      <p style="MARGIN-LEFT: 12px">Page, [&lt;number&gt;], 1</p></td>
+    <td valign=top>
+      <p style="MARGIN-LEFT: 12px">Sets page to display, by number (1 ... number of pages). A large value may be used to indicate the last
+      page.</p>
+      <p style="MARGIN-LEFT: 12px">Examples:</p>
+      <ul>
+        <li>&lt;param name="page" value="5" /&gt;</li>
+        <li>&lt;param name="page" value="10" /&gt;</li>
+        <li>&lt;param name="page" value="1000000" /&gt; </li></ul></td></tr>
+  <tr>
+    <td valign=top>
+      <p style="MARGIN-LEFT: 12px">PageLayout, [single|book|cover],single</p></td>
+    <td valign=top>
+      <p style="MARGIN-LEFT: 12px">Specifies a page display layout of "single" page, 
+      "book", or book with a front "cover" page.</p>
+      <p style="MARGIN-LEFT: 12px">Examples:</p>
+      <ul>
+        <li>&lt;param name="pagelayout" value="single" /&gt;</li>
+        <li>&lt;param name="pagelayout" value="book" /&gt;</li>
+        <li>&lt;param name="pagelayout" value="cover" /&gt; </li></ul></td></tr>
+  <tr>
+    <td valign=top>
+      <p style="MARGIN-LEFT: 12px">Prefetch, [yes|no], no</p></td>
+    <td valign=top>
+      <p style="MARGIN-LEFT: 12px">Enables or disables prefetching of pages in indirect documents.</p>
+      <p style="MARGIN-LEFT: 12px">Examples:</p>
+      <ul>
+        <li>&lt;param name="prefetch" value="no" /&gt;</li>
+        <li>&lt;param name="prefetch" value="yes" /&gt; </li></ul></td></tr>
+  <tr>
+    <td valign=top>
+      <p style="MARGIN-LEFT: 12px">SearchText, &lt;string&gt;,
+      none</p></td>
+    <td valign=top>
+      <p style="MARGIN-LEFT: 12px">Seeds the initial search string.</p>
+      <p style="MARGIN-LEFT: 12px">Examples:</p>
+      <ul>
+        <li>&lt;param name="searchtext" value="author" /&gt;</li>
+        <li>&lt;param name="searchtext" value="insects" /&gt;
+      </li></ul></td></tr>
+  <tr>
+    <td valign=top>
+      <p style="MARGIN-LEFT: 12px">Toolbar, [yes|no], yes</p></td>
+    <td valign=top>
+      <p style="MARGIN-LEFT: 12px">Enables or disables the toolbar.</p>
+      <p style="MARGIN-LEFT: 12px">Examples:</p>
+      <ul>
+        <li>&lt;param name="toolbar" value="no" /&gt;</li>
+        <li>&lt;param name="toolbar" value="yes" /&gt; </li></ul></td></tr>
+  <tr>
+    <td valign=top>
+      <p style="MARGIN-LEFT: 12px">Zoom, [&lt;number&gt;|width|page],
+100</p></td>
+    <td valign=top>
+      <p style="MARGIN-LEFT: 12px">Specifies initial zoom level as a (number)%
+      of original size, fit-width, or fit-page.</p>
+      <p style="MARGIN-LEFT: 12px">Examples:</p>
+      <ul>
+        <li>&lt;param name="zoom" value="300%" /&gt;</li>
+        <li>&lt;param name="zoom" value="150" /&gt;</li>
+        <li>&lt;param name="zoom" value="page" /&gt; </li>
+        <li>&lt;param name="zoom" value="width" /&gt; </li></ul></td></tr>
+  <tr>
+    <td valign=top>
+      <p style="MARGIN-LEFT: 12px">ZoomFast, [yes|no], no</p></td>
+    <td valign=top>
+      <p style="MARGIN-LEFT: 12px">If enabled, fit page and fit width zoom will reduce 
+          to an integer subsample rate for faster rendering.</p>
+      <p style="MARGIN-LEFT: 12px">Examples:</p>
+      <ul>
+        <li>&lt;param name="zoomfast" value="no" /&gt;</li>
+        <li>&lt;param name="zoomfast" value="yes" /&gt; </li></ul></td></tr></tbody></table>
+
+</div></body></html>
